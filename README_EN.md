@@ -7,7 +7,7 @@
 #### The Agent Skills actually used and open-sourced by the WeChat blog 别动生产库 ("Don't Touch the Production DB") — reviewed and streamlined.
 
 [![License](https://img.shields.io/badge/License-MIT-3B82F6?style=for-the-badge)](./LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-1-10B981?style=for-the-badge)](#-skills)
+[![Skills](https://img.shields.io/badge/Skills-2-10B981?style=for-the-badge)](#-skills)
 [![AgentSkills](https://img.shields.io/badge/AgentSkills-Standard-8B5CF6?style=for-the-badge)](https://agentskills.io)
 
 ![Claude Code](https://img.shields.io/badge/Claude_Code-Skill-D97706?style=flat-square&logo=anthropic&logoColor=white)
@@ -26,6 +26,7 @@ Follows the [Agent Skills](https://agentskills.io) open standard. Works with Cla
 | Name | One-liner |
 |---|---|
 | 🔭 [**hv-analysis (quick edition)**](#hv-analysis) | Throw in a product / project / concept — get a framework-level research report with real-time sources in 30-60 minutes |
+| 🛡️ [**safe-scout (research insurance)**](#safe-scout) | Researching on content-moderated model backends without bricking your session: isolate before, recognize during, rescue after |
 
 ---
 
@@ -91,6 +92,35 @@ Run an hv-analysis on X
 ```
 
 → [SKILL.md](./hv-analysis/SKILL.md)
+
+</td></tr>
+</table>
+
+<table>
+<tr><td>
+
+### 🛡️ safe-scout (research insurance)
+
+> *"Not a single failed request — the whole session bricks. Unless you insured it beforehand."*
+
+On content-moderated model backends (Bailian et al.), every request resends the full history, and inspection is probabilistic: one poisoned external text means every request after fails with 400 — session bricked. This skill turns protocols earned from a real bricking incident into a closed loop:
+
+**Before (default)**: external output lands on disk first; jq extracts only safe fields; full-text reading goes to subagents; a dead subagent leaves the main session untouched
+
+**During**: error-signature table (DataInspectionFailed et al.) + "consecutive same-class 400s = poisoned" rule
+
+**After**: stop retrying → save progress → `/compact` to launder context → probe → if still failing, abandon session and resume from disk; loss = zero
+
+**Good for**
+
+- Anyone running Claude Code-class agents on Chinese model relays
+- Any heavy research task that fetches pages / reads READMEs / scrapes search results
+
+**Not for**
+
+- Direct, non-moderated backends (Anthropic official etc.) — no such pain
+
+→ [SKILL.md](./safe-scout/SKILL.md)
 
 </td></tr>
 </table>

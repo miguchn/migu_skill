@@ -7,7 +7,7 @@
 #### 微信公众号「别动生产库」真实在用的 Agent Skill，审查精简后开源在这里
 
 [![License](https://img.shields.io/badge/License-MIT-3B82F6?style=for-the-badge)](./LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-1-10B981?style=for-the-badge)](#-skills)
+[![Skills](https://img.shields.io/badge/Skills-2-10B981?style=for-the-badge)](#-skills)
 [![AgentSkills](https://img.shields.io/badge/AgentSkills-Standard-8B5CF6?style=for-the-badge)](https://agentskills.io)
 
 ![Claude Code](https://img.shields.io/badge/Claude_Code-Skill-D97706?style=flat-square&logo=anthropic&logoColor=white)
@@ -26,6 +26,7 @@
 | 名字 | 一句话 |
 |---|---|
 | 🔭 [**hv-analysis（横纵分析法·轻量快速版）**](#hv-analysis) | 想搞懂一个产品/项目/概念，丢给它，30-60 分钟出带实时来源的框架性调研报告 |
+| 🛡️ [**safe-scout（调研保险协议）**](#safe-scout) | 国产模型后端做调研时，防内容审查污染：事前隔离、事中识别、事后救援，会话不报废 |
 
 ---
 
@@ -91,6 +92,35 @@ Agent 不支持 Skill 也没关系：把 `SKILL.md` 全文当项目规则文件�
 ```
 
 → [SKILL.md](./hv-analysis/SKILL.md)
+
+</td></tr>
+</table>
+
+<table>
+<tr><td>
+
+### 🛡️ safe-scout（调研保险协议）
+
+> *"不是单次失败，是整个会话报废——除非你提前买了保险。"*
+
+用百炼等国产模型当 agent 后端时，每次请求重发完整历史，而审查是概率性的：一段外部文本中招，之后每个请求都 400，会话直接报废。这个 skill 把我们从真实事故里攒下的协议做成闭环：
+
+**事前隔离**（默认动作）：外部输出先落盘、jq 只提安全字段、全文派子 agent 读、子 agent 死了主会话无恙
+
+**事中识别**：错误签名表（DataInspectionFailed 等）+ "连续同类 400 = 已污染" 判定
+
+**事后救援**：停重试 → 落盘进度 → `/compact` 洗上下文 → 探测 → 不行就弃会话续盘，损失归零
+
+**适合**
+
+- 用国产模型/接力后端跑 Claude Code 类 agent 的人
+- 任何要抓网页/读 README/扫搜索结果的重度调研任务
+
+**不适合**
+
+- 直连无审查后端（Anthropic 官方等）——没这个痛点
+
+→ [SKILL.md](./safe-scout/SKILL.md)
 
 </td></tr>
 </table>
