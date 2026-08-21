@@ -4,7 +4,7 @@
 
 # 🧰 migu_skill
 
-#### The Agent Skills Miguchn × Bingtang actually use every day — distilled, then open-sourced.
+#### The Agent Skills actually used and open-sourced by the WeChat blog 别动生产库 ("Don't Touch the Production DB") — reviewed and streamlined.
 
 [![License](https://img.shields.io/badge/License-MIT-3B82F6?style=for-the-badge)](./LICENSE)
 [![Skills](https://img.shields.io/badge/Skills-1-10B981?style=for-the-badge)](#-skills)
@@ -15,7 +15,7 @@
 
 </div>
 
-Not a prompt dump. Every skill here has been used and verified in real collaboration, then reviewed from first principles — **bloat distilled away before it enters the repo**. Fewer, but sharper.
+Not a prompt dump. Every skill here has been used and verified in real collaboration, then reviewed from first principles — **bloat streamlined away before it enters the repo**. Fewer, but sharper.
 
 Follows the [Agent Skills](https://agentskills.io) open standard. Works with Claude Code, Codex, and any compatible agent.
 
@@ -25,7 +25,7 @@ Follows the [Agent Skills](https://agentskills.io) open standard. Works with Cla
 
 | Name | One-liner |
 |---|---|
-| 🔭 [**hv-analysis (distilled)**](#-hv-analysis-distilled) | Deep-research reports: vertical axis traces history, horizontal axis compares peers, the intersection yields judgment |
+| 🔭 [**hv-analysis (streamlined)**](#hv-analysis) | Deep-research reports: vertical axis traces history, horizontal axis compares peers, the intersection yields judgment |
 
 ---
 
@@ -55,13 +55,15 @@ No skill support? Paste the `SKILL.md` content as project rules or straight into
 <table>
 <tr><td>
 
-### 🔭 hv-analysis (distilled)
+<a id="hv-analysis"></a>
 
-> *"Vertical for depth in time, horizontal for breadth in peers — judgment emerges at the intersection."* — The method originates from [Khazix's](https://github.com/KKKKhazix/khazix-skills) open-source Horizontal-Vertical Analysis. This repo ships a **distilled edition**.
+### 🔭 hv-analysis (streamlined)
+
+> *"Vertical for depth in time, horizontal for breadth in peers — judgment emerges at the intersection."* — The method is borrowed from [Khazix's](https://github.com/KKKKhazix/khazix-skills) open-source Horizontal-Vertical Analysis. This repo ships a **streamlined adaptation of the original**.
 
 Want to truly understand a product / project / technology / concept? Throw it in. The vertical axis tells its story from birth to now and traces path dependency; the horizontal axis lines up peers on one shared set of dimensions; the crossing yields future paths and early-warning signals. Guarded by **hard evidence rules**: primary sources first, claims dated, facts / inferences / opinions kept separate, and "unverified" stated plainly when evidence is missing — anti-hallucination is the lifeblood of this method.
 
-**What we distilled**
+**What we streamlined**
 
 - Vertical and synthesis phases asked path dependency twice → merged, asked once
 - "Exactly 3 future paths" padding → 1–3 as the case demands
@@ -99,9 +101,9 @@ Run an hv-analysis on X
 
 ## 🌟 About
 
-Miguchn: product manager in the insurance industry, full-stack tinkerer. Bingtang: his AI partner.
+Maintained by the Chinese WeChat blog **别动生产库** (*"Don't Touch the Production DB"*) — AI tooling, engineering practice, and insurance-tech in the wild. Skills earn their place here only after running in our own workflow, passing review, and getting streamlined.
 
-This repo is a byproduct of our collaboration — skills earn their place only after running in our own workflow, passing review, and getting distilled. If it helps, a ⭐ is appreciated.
+More AI × engineering content: search 「别动生产库」 on WeChat. If this helps, a ⭐ is appreciated.
 
 Inclusion criteria: ① actually used and proven ② first-principles reviewed, redundancy removed ③ single-file, zero dependencies.
 
@@ -111,6 +113,6 @@ Inclusion criteria: ① actually used and proven ② first-principles reviewed, 
 
 [MIT License](./LICENSE) · use / modify / redistribute freely
 
-Made by Miguchn × Bingtang
+Made by 别动生产库
 
 </div>
