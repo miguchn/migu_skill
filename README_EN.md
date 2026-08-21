@@ -25,7 +25,7 @@ Follows the [Agent Skills](https://agentskills.io) open standard. Works with Cla
 
 | Name | One-liner |
 |---|---|
-| 🔭 [**hv-analysis (streamlined)**](#hv-analysis) | Deep-research reports: vertical axis traces history, horizontal axis compares peers, the intersection yields judgment |
+| 🔭 [**hv-analysis (quick edition)**](#hv-analysis) | Throw in a product / project / concept — get a framework-level research report with real-time sources in 30-60 minutes |
 
 ---
 
@@ -57,31 +57,29 @@ No skill support? Paste the `SKILL.md` content as project rules or straight into
 
 <a id="hv-analysis"></a>
 
-### 🔭 hv-analysis (streamlined)
+### 🔭 hv-analysis (quick edition)
 
-> *"Vertical for depth in time, horizontal for breadth in peers — judgment emerges at the intersection."* — The method is borrowed from [Khazix's](https://github.com/KKKKhazix/khazix-skills) open-source Horizontal-Vertical Analysis. This repo ships a **streamlined adaptation of the original**.
+> *"Vertical for depth in time, horizontal for breadth in peers — judgment emerges at the intersection."* — Method borrowed from [Khazix's](https://github.com/KKKKhazix/khazix-skills) open-source Horizontal-Vertical Analysis. The original ships 10k-30k-word PDF deep reports; **this edition is the lightweight-complete version: 30-60 minutes, structured Markdown, real-time sources** — small, but a full closed loop. For heavy reports, use the original.
 
 Want to truly understand a product / project / technology / concept? Throw it in. The vertical axis tells its story from birth to now and traces path dependency; the horizontal axis lines up peers on one shared set of dimensions; the crossing yields future paths and early-warning signals. Guarded by **hard evidence rules**: primary sources first, claims dated, facts / inferences / opinions kept separate, and "unverified" stated plainly when evidence is missing — anti-hallucination is the lifeblood of this method.
 
-**What we streamlined**
+**What's different here**
 
-- Vertical and synthesis phases asked path dependency twice → merged, asked once
-- "Exactly 3 future paths" padding → 1–3 as the case demands
-- Hard 10k–30k char quota → depth tiers: 2–5k for simple subjects, 30k cap for complex ones
-- "Detailed analysis" section restating the tables → table-external insights only, omitted when none
-- Added the missing execution layer: scope the object → gather sources → three phases → report
-
-**The four evidence rules: untouched.**
+- **Lightweight but complete loop**: real-time search layer (two-track search lists + mandatory arXiv for academic subjects + primary-source priority + 12-month freshness hard rule) → dual-axis analysis → intersection judgment → structured Markdown delivery → 5-point QC, done in 30-60 minutes
+- **Open-source subjects go through structured gh metadata** (stars / activity / license / releases) instead of README-reading — more noise-resistant, earned in our own scout-research practice
+- Path dependency asked once on the vertical axis, never repeated at synthesis
+- 1-3 future paths as the case demands, no padding
+- Depth-tiered 2,000-8,000 words — simple subjects stay short
 
 **Good for**
 
-- Tech selection, open-source deep dives, competitive analysis, industry research
+- Tech selection, open-source deep dives, competitive analysis, quick industry frameworks
 - Systematic material prep before long-form writing
 
 **Not for**
 
 - Looking up a definition — that's just a question
-- Quick two-option comparison — just ask
+- 10k-30k-word heavy PDF reports — that's the [original's](https://github.com/KKKKhazix/khazix-skills) job
 
 **Trigger examples**
 
