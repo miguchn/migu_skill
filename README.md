@@ -110,13 +110,9 @@ Agent 不支持 Skill 也没关系：把 `SKILL.md` 全文当项目规则文件�
 
 **效果展示**
 
-左侧为原图，右侧为使用该 skill 生成的效果。
+左侧为原图，右侧为使用该 skill 生成的效果；下图将自动轮播三组测试结果。
 
-![人物与自然元素的生成效果](./assets/minimal-paper-cover/portrait-before-after.png)
-
-![静物与画面呼应的生成效果](./assets/minimal-paper-cover/sunflower-before-after.png)
-
-![人物与环境场景的生成效果](./assets/minimal-paper-cover/garden-before-after.png)
+![minimal-paper-cover 三组生成效果自动轮播](./assets/minimal-paper-cover/examples-carousel.gif)
 
 **适合**
 
