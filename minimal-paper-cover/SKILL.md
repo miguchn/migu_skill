@@ -7,22 +7,6 @@ description: Create a minimal paper-textured hand-painted cover illustration fro
 
 把照片或主题提炼成一个最值得记住的符号化瞬间。目标不是缩小版写实复刻，而是在粗糙白纸上，用极少的线条和几块鲜明的丙烯色面，让主体轻巧、准确地成立。
 
-## 效果示例
-
-以下是使用本 skill 从照片提炼出的测试效果，均为左侧原图、右侧生成效果。示例只展示预期的提炼程度、纸张质感、留白和色块关系；不要照搬其中的具体人物、构图或配色。
-
-**人物与自然元素**
-
-![人物与自然元素的原图及生成效果](assets/examples/portrait-before-after.png)
-
-**静物与画面呼应**
-
-![向日葵静物的原图及生成效果](assets/examples/sunflower-before-after.png)
-
-**人物与环境场景**
-
-![庭院人物场景的原图及生成效果](assets/examples/garden-before-after.png)
-
 ## 开始创作
 
 - 用户提供照片时，先识别最有辨识度的主体、轮廓、动作、空间关系和视觉特征，再删去次要信息。

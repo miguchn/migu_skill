@@ -108,6 +108,16 @@ Agent 不支持 Skill 也没关系：把 `SKILL.md` 全文当项目规则文件�
 
 把照片或主题中最有辨识度的主体、动作和空间关系提炼出来，删掉写实细节，只用细而轻的手绘线条与 2-4 种醒目丙烯色块重新表达。主体控制在画面的 10%-20%，其余交给粗糙白纸和留白，做出安静、克制、童趣又有封面感的小幅插画。
 
+**效果展示**
+
+左侧为原图，右侧为使用该 skill 生成的效果。
+
+![人物与自然元素的生成效果](./assets/minimal-paper-cover/portrait-before-after.png)
+
+![静物与画面呼应的生成效果](./assets/minimal-paper-cover/sunflower-before-after.png)
+
+![人物与环境场景的生成效果](./assets/minimal-paper-cover/garden-before-after.png)
+
 **适合**
 
 - 把旅行照、人物照、建筑或日常物件做成极简封面插图
