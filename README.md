@@ -7,7 +7,7 @@
 #### 微信公众号「别动生产库」真实在用的 Agent Skill，审查精简后开源在这里
 
 [![License](https://img.shields.io/badge/License-MIT-3B82F6?style=for-the-badge)](./LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-2-10B981?style=for-the-badge)](#-skills)
+[![Skills](https://img.shields.io/badge/Skills-3-10B981?style=for-the-badge)](#-skills)
 [![AgentSkills](https://img.shields.io/badge/AgentSkills-Standard-8B5CF6?style=for-the-badge)](https://agentskills.io)
 
 ![Claude Code](https://img.shields.io/badge/Claude_Code-Skill-D97706?style=flat-square&logo=anthropic&logoColor=white)
@@ -27,6 +27,7 @@
 |---|---|
 | 🔭 [**hv-analysis（横纵分析法·轻量快速版）**](#hv-analysis) | 想搞懂一个产品/项目/概念，丢给它，30-60 分钟出带实时来源的框架性调研报告 |
 | 🛡️ [**safe-scout（调研保险协议）**](#safe-scout) | 国产模型后端做调研时，防内容审查污染：事前隔离、事中识别、事后救援，会话不报废 |
+| 🎨 [**minimal-paper-cover（极简纸感手绘封面）**](#minimal-paper-cover) | 把照片或主题提炼成小主体、大留白、鲜明丙烯色块的纸感封面插画 |
 
 ---
 
@@ -92,6 +93,40 @@ Agent 不支持 Skill 也没关系：把 `SKILL.md` 全文当项目规则文件�
 ```
 
 → [SKILL.md](./hv-analysis/SKILL.md)
+
+</td></tr>
+</table>
+
+<table>
+<tr><td>
+
+<a id="minimal-paper-cover"></a>
+
+### 🎨 minimal-paper-cover（极简纸感手绘封面）
+
+> *“线条负责提示，色块负责成立。”*
+
+把照片或主题中最有辨识度的主体、动作和空间关系提炼出来，删掉写实细节，只用细而轻的手绘线条与 2-4 种醒目丙烯色块重新表达。主体控制在画面的 10%-20%，其余交给粗糙白纸和留白，做出安静、克制、童趣又有封面感的小幅插画。
+
+**适合**
+
+- 把旅行照、人物照、建筑或日常物件做成极简封面插图
+- 只有一个主题，希望生成纸感、手绘、强提炼的视觉
+
+**不适合**
+
+- 写实复刻、照片转线稿、复杂满版场景
+- 水彩、彩铅、蜡笔、厚重油画、3D 或光滑商业插画
+
+**怎么触发**
+
+```
+把这张照片画成极简纸感封面
+用“雨天等公交”做一张小主体、大留白的丙烯手绘插画
+Create a minimal paper-textured cover from this photo
+```
+
+→ [SKILL.md](./minimal-paper-cover/SKILL.md)
 
 </td></tr>
 </table>

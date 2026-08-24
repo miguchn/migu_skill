@@ -7,7 +7,7 @@
 #### The Agent Skills actually used and open-sourced by the WeChat blog 别动生产库 ("Don't Touch the Production DB") — reviewed and streamlined.
 
 [![License](https://img.shields.io/badge/License-MIT-3B82F6?style=for-the-badge)](./LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-2-10B981?style=for-the-badge)](#-skills)
+[![Skills](https://img.shields.io/badge/Skills-3-10B981?style=for-the-badge)](#-skills)
 [![AgentSkills](https://img.shields.io/badge/AgentSkills-Standard-8B5CF6?style=for-the-badge)](https://agentskills.io)
 
 ![Claude Code](https://img.shields.io/badge/Claude_Code-Skill-D97706?style=flat-square&logo=anthropic&logoColor=white)
@@ -27,6 +27,7 @@ Follows the [Agent Skills](https://agentskills.io) open standard. Works with Cla
 |---|---|
 | 🔭 [**hv-analysis (quick edition)**](#hv-analysis) | Throw in a product / project / concept — get a framework-level research report with real-time sources in 30-60 minutes |
 | 🛡️ [**safe-scout (research insurance)**](#safe-scout) | Researching on content-moderated model backends without bricking your session: isolate before, recognize during, rescue after |
+| 🎨 [**minimal-paper-cover**](#minimal-paper-cover) | Distill a photo or theme into a paper-textured cover with a tiny subject, generous white space, and bold acrylic color blocks |
 
 ---
 
@@ -92,6 +93,40 @@ Run an hv-analysis on X
 ```
 
 → [SKILL.md](./hv-analysis/SKILL.md)
+
+</td></tr>
+</table>
+
+<table>
+<tr><td>
+
+<a id="minimal-paper-cover"></a>
+
+### 🎨 minimal-paper-cover
+
+> *“Lines suggest; color blocks make the image.”*
+
+Extracts the most recognizable subject, gesture, and spatial relationship from a photo or theme, strips away realistic detail, and rebuilds the image with delicate hand-drawn lines and 2-4 bold acrylic colors. The subject stays at roughly 10%-20% of the canvas; rough white paper and open space create a quiet, restrained, playful cover illustration.
+
+**Good for**
+
+- Turning travel photos, portraits, buildings, or everyday objects into minimal cover art
+- Creating a paper-textured, hand-painted, highly distilled visual from a theme
+
+**Not for**
+
+- Faithful reproduction, photo-to-line-art conversion, or detailed full-frame scenes
+- Watercolor, colored pencil, crayon, heavy oil paint, 3D, or glossy commercial illustration
+
+**Trigger examples**
+
+```
+Turn this photo into a minimal paper-textured cover
+Create a tiny-subject acrylic illustration about waiting for a bus in the rain
+把这张照片画成极简纸感封面
+```
+
+→ [SKILL.md](./minimal-paper-cover/SKILL.md)
 
 </td></tr>
 </table>
