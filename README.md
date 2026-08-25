@@ -7,7 +7,7 @@
 #### 微信公众号「别动生产库」真实在用的 Agent Skill，审查精简后开源在这里
 
 [![License](https://img.shields.io/badge/License-MIT-3B82F6?style=for-the-badge)](./LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-3-10B981?style=for-the-badge)](#-skills)
+[![Skills](https://img.shields.io/badge/Skills-4-10B981?style=for-the-badge)](#-skills)
 [![AgentSkills](https://img.shields.io/badge/AgentSkills-Standard-8B5CF6?style=for-the-badge)](https://agentskills.io)
 
 ![Claude Code](https://img.shields.io/badge/Claude_Code-Skill-D97706?style=flat-square&logo=anthropic&logoColor=white)
@@ -28,6 +28,7 @@
 | 🔭 [**hv-analysis（横纵分析法·轻量快速版）**](#hv-analysis) | 想搞懂一个产品/项目/概念，丢给它，30-60 分钟出带实时来源的框架性调研报告 |
 | 🛡️ [**safe-scout（调研保险协议）**](#safe-scout) | 国产模型后端做调研时，防内容审查污染：事前隔离、事中识别、事后救援，会话不报废 |
 | 🎨 [**minimal-paper-cover（极简纸感手绘封面）**](#minimal-paper-cover) | 把照片或主题提炼成小主体、大留白、鲜明丙烯色块的纸感封面插画 |
+| 🏅 [**photo-travel-badge（旅行纪念珐琅徽章）**](#photo-travel-badge) | 保留旅行照中的主体、必要环境与地标文字，重新设计成有真实金属厚度的珐琅纪念徽章 |
 
 ---
 
@@ -133,6 +134,46 @@ Create a minimal paper-textured cover from this photo
 ```
 
 → [SKILL.md](./minimal-paper-cover/SKILL.md)
+
+</td></tr>
+</table>
+
+<table>
+<tr><td>
+
+<a id="photo-travel-badge"></a>
+
+### 🏅 photo-travel-badge（旅行纪念珐琅徽章）
+
+> *“提炼不是把主体从环境中孤立出来，而是保留让地点可被认出的关系。”*
+
+从旅行照片中找出最值得记住的视觉主体，同时保留支撑它成立的少量环境关系、代表性色彩和地标原有文字，再重新设计成金色金属边、微浮雕与珐琅填色的实体纪念徽章。输出采用 3:2 横版、小主体、大留白和深色粗麻布背景；用户需要时，还可以把地名、年份或短文字作为克制的底部收口。
+
+**效果展示**
+
+上方为生成的徽章，下方为原始旅行照。
+
+![photo-travel-badge 解放阁生成效果与原图对照](./assets/photo-travel-badge/jiefangge-before-after.jpg)
+
+**适合**
+
+- 把旅行照、地标建筑、城市装置或特色景物做成有收藏感的珐琅徽章
+- 希望保留主体与必要环境、原图地标文字，并按需加入底部纪念文字
+
+**不适合**
+
+- 扁平贴纸、2D 矢量 Logo、普通描边图标
+- 完整写实场景复刻、卡通化或满版构图
+
+**怎么触发**
+
+```
+把这张旅行照做成金属珐琅纪念徽章
+保留地标和必要环境，底部写 JI NAN
+Create a gold-metal enamel travel badge from this photo
+```
+
+→ [SKILL.md](./photo-travel-badge/SKILL.md)
 
 </td></tr>
 </table>

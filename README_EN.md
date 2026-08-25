@@ -7,7 +7,7 @@
 #### The Agent Skills actually used and open-sourced by the WeChat blog 别动生产库 ("Don't Touch the Production DB") — reviewed and streamlined.
 
 [![License](https://img.shields.io/badge/License-MIT-3B82F6?style=for-the-badge)](./LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-3-10B981?style=for-the-badge)](#-skills)
+[![Skills](https://img.shields.io/badge/Skills-4-10B981?style=for-the-badge)](#-skills)
 [![AgentSkills](https://img.shields.io/badge/AgentSkills-Standard-8B5CF6?style=for-the-badge)](https://agentskills.io)
 
 ![Claude Code](https://img.shields.io/badge/Claude_Code-Skill-D97706?style=flat-square&logo=anthropic&logoColor=white)
@@ -28,6 +28,7 @@ Follows the [Agent Skills](https://agentskills.io) open standard. Works with Cla
 | 🔭 [**hv-analysis (quick edition)**](#hv-analysis) | Throw in a product / project / concept — get a framework-level research report with real-time sources in 30-60 minutes |
 | 🛡️ [**safe-scout (research insurance)**](#safe-scout) | Researching on content-moderated model backends without bricking your session: isolate before, recognize during, rescue after |
 | 🎨 [**minimal-paper-cover**](#minimal-paper-cover) | Distill a photo or theme into a paper-textured cover with a tiny subject, generous white space, and bold acrylic color blocks |
+| 🏅 [**photo-travel-badge**](#photo-travel-badge) | Preserve a travel photo's subject, supporting context, and landmark text in a physically rendered gold-metal enamel badge |
 
 ---
 
@@ -127,6 +128,46 @@ Create a tiny-subject acrylic illustration about waiting for a bus in the rain
 ```
 
 → [SKILL.md](./minimal-paper-cover/SKILL.md)
+
+</td></tr>
+</table>
+
+<table>
+<tr><td>
+
+<a id="photo-travel-badge"></a>
+
+### 🏅 photo-travel-badge
+
+> *“Distillation does not isolate the subject; it preserves the relationships that make the place recognizable.”*
+
+Finds the most memorable visual subject in a travel photo, keeps the supporting context, representative colors, and identity-bearing source text that make it recognizable, then redesigns the result as a physical souvenir badge with a warm-gold metal edge, subtle relief, and enamel fills. The output uses a spacious 3:2 layout, a small centered subject, and a harmonious dark coarse-linen background. When requested, a place name, year, or short phrase becomes a restrained finishing element at the bottom.
+
+**Example**
+
+Generated badge above, original travel photo below.
+
+![photo-travel-badge generated Jiefang Pavilion badge and source photo](./assets/photo-travel-badge/jiefangge-before-after.jpg)
+
+**Good for**
+
+- Turning travel photos, landmark buildings, city installations, or distinctive scenery into collectible enamel badges
+- Preserving the subject's supporting context and landmark text, with optional commemorative text at the bottom
+
+**Not for**
+
+- Flat stickers, 2D vector logos, or ordinary outlined icons
+- Full photorealistic scene recreation, cartoons, or full-bleed compositions
+
+**Trigger examples**
+
+```
+Turn this travel photo into a gold-metal enamel souvenir badge
+Keep the landmark and necessary context, and add JI NAN at the bottom
+把这张旅行照做成金属珐琅纪念徽章
+```
+
+→ [SKILL.md](./photo-travel-badge/SKILL.md)
 
 </td></tr>
 </table>
