@@ -148,7 +148,9 @@ Finds the most memorable visual subject in a travel photo, keeps the supporting 
 
 Generated badge above, original travel photo below.
 
-![photo-travel-badge generated Jiefang Pavilion badge and source photo](./assets/photo-travel-badge/jiefangge-before-after.jpg)
+<p align="center">
+  <img src="./assets/photo-travel-badge/jiefangge-before-after.jpg" alt="photo-travel-badge generated Jiefang Pavilion badge and source photo" width="420">
+</p>
 
 **Good for**
 

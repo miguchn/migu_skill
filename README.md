@@ -114,7 +114,9 @@ Agent 不支持 Skill 也没关系：把 `SKILL.md` 全文当项目规则文件�
 
 左侧为原图，右侧为使用该 skill 生成的效果；下图将自动轮播三组测试结果。
 
-![minimal-paper-cover 三组生成效果自动轮播](./assets/minimal-paper-cover/examples-carousel.gif)
+<p align="center">
+  <img src="./assets/minimal-paper-cover/examples-carousel.gif" alt="minimal-paper-cover 三组生成效果自动轮播" width="420">
+</p>
 
 **适合**
 
@@ -154,7 +156,9 @@ Create a minimal paper-textured cover from this photo
 
 上方为生成的徽章，下方为原始旅行照。
 
-![photo-travel-badge 解放阁生成效果与原图对照](./assets/photo-travel-badge/jiefangge-before-after.jpg)
+<p align="center">
+  <img src="./assets/photo-travel-badge/jiefangge-before-after.jpg" alt="photo-travel-badge 解放阁生成效果与原图对照" width="420">
+</p>
 
 **适合**
 
