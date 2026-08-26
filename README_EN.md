@@ -7,7 +7,7 @@
 #### The Agent Skills actually used and open-sourced by the WeChat blog 别动生产库 ("Don't Touch the Production DB") — reviewed and streamlined.
 
 [![License](https://img.shields.io/badge/License-MIT-3B82F6?style=for-the-badge)](./LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-4-10B981?style=for-the-badge)](#-skills)
+[![Skills](https://img.shields.io/badge/Skills-5-10B981?style=for-the-badge)](#-skills)
 [![AgentSkills](https://img.shields.io/badge/AgentSkills-Standard-8B5CF6?style=for-the-badge)](https://agentskills.io)
 
 ![Claude Code](https://img.shields.io/badge/Claude_Code-Skill-D97706?style=flat-square&logo=anthropic&logoColor=white)
@@ -29,6 +29,7 @@ Follows the [Agent Skills](https://agentskills.io) open standard. Works with Cla
 | 🛡️ [**safe-scout (research insurance)**](#safe-scout) | Researching on content-moderated model backends without bricking your session: isolate before, recognize during, rescue after |
 | 🎨 [**minimal-paper-cover**](#minimal-paper-cover) | Distill a photo or theme into a paper-textured cover with a tiny subject, generous white space, and bold acrylic color blocks |
 | 🏅 [**photo-travel-badge**](#photo-travel-badge) | Preserve a travel photo's subject, supporting context, and landmark text in a physically rendered gold-metal enamel badge |
+| 🎨 [**palette-postcard**](#palette-postcard) | Give each travel photo its own collectible study page combining the source photo, selective watercolor, archive text, and three source-derived swatches |
 
 ---
 
@@ -168,6 +169,48 @@ Keep the landmark and necessary context, and add JI NAN at the bottom
 ```
 
 → [SKILL.md](./photo-travel-badge/SKILL.md)
+
+</td></tr>
+</table>
+
+<table>
+<tr><td>
+
+<a id="palette-postcard"></a>
+
+### 🎨 palette-postcard
+
+> *“The photograph preserves the place; the watercolor preserves the memory.”*
+
+Turns every travel photo into a separate 2:3 portrait observation page: a high-fidelity source-photo panel at the top, a lighter selective watercolor study of the same scene below, restrained travel-archive typography, and exactly three hand-painted swatches re-extracted from the current photo. Each page is generated as one complete image, without code compositing or multi-photo layouts.
+
+**Example**
+
+One-pass final result using a snow-covered corner-tower photograph.
+
+<p align="center">
+  <img src="./assets/palette-postcard/winter-mirror-palette-postcard.png" alt="palette-postcard WINTER MIRROR corner-tower test result" width="420">
+</p>
+
+**Good for**
+
+- Turning travel photos, architecture, landscapes, street scenes, people, or travel objects into collectible watercolor field-note pages
+- Keeping paper and editorial structure consistent across a series while deriving the watercolor study and palette independently for every photo
+
+**Not for**
+
+- Generic watercolor filters, photorealistic watercolor copies, or ordinary color-palette infographics
+- Multi-photo collages, pixel-exact source-photo layouts, code compositing, or decoration-heavy posters
+
+**Trigger examples**
+
+```
+Use palette-postcard on these travel photos
+Keep the source photo at the top and add a selective watercolor study with exactly three source-derived swatches
+用 palette-postcard 处理这些旅行照片
+```
+
+→ [SKILL.md](./palette-postcard/SKILL.md)
 
 </td></tr>
 </table>

@@ -7,7 +7,7 @@
 #### 微信公众号「别动生产库」真实在用的 Agent Skill，审查精简后开源在这里
 
 [![License](https://img.shields.io/badge/License-MIT-3B82F6?style=for-the-badge)](./LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-4-10B981?style=for-the-badge)](#-skills)
+[![Skills](https://img.shields.io/badge/Skills-5-10B981?style=for-the-badge)](#-skills)
 [![AgentSkills](https://img.shields.io/badge/AgentSkills-Standard-8B5CF6?style=for-the-badge)](https://agentskills.io)
 
 ![Claude Code](https://img.shields.io/badge/Claude_Code-Skill-D97706?style=flat-square&logo=anthropic&logoColor=white)
@@ -29,6 +29,7 @@
 | 🛡️ [**safe-scout（调研保险协议）**](#safe-scout) | 国产模型后端做调研时，防内容审查污染：事前隔离、事中识别、事后救援，会话不报废 |
 | 🎨 [**minimal-paper-cover（极简纸感手绘封面）**](#minimal-paper-cover) | 把照片或主题提炼成小主体、大留白、鲜明丙烯色块的纸感封面插画 |
 | 🏅 [**photo-travel-badge（旅行纪念珐琅徽章）**](#photo-travel-badge) | 保留旅行照中的主体、必要环境与地标文字，重新设计成有真实金属厚度的珐琅纪念徽章 |
+| 🎨 [**palette-postcard（旅行色卡水彩研究页）**](#palette-postcard) | 每张旅行照独立生成照片、水彩观察稿、档案文字和三枚源图色卡组成的收藏级研究页 |
 
 ---
 
@@ -174,6 +175,48 @@ Create a gold-metal enamel travel badge from this photo
 ```
 
 → [SKILL.md](./photo-travel-badge/SKILL.md)
+
+</td></tr>
+</table>
+
+<table>
+<tr><td>
+
+<a id="palette-postcard"></a>
+
+### 🎨 palette-postcard（旅行色卡水彩研究页）
+
+> *“照片负责保存现场，水彩负责留下记忆。”*
+
+把每张旅行照片分别整理成一张 2:3 竖版观察页：顶部保留高保真原照，下部把同一场景裁切、删减并重组为轻盈的水彩研究，旁边配一列克制的旅行档案文字，以及恰好三枚从当前照片重新提取的手绘色卡。整页一次生成，不做代码拼接，也不把多张照片塞进同一张海报。
+
+**效果展示**
+
+使用雪中角楼照片的一次生成测试结果。
+
+<p align="center">
+  <img src="./assets/palette-postcard/winter-mirror-palette-postcard.png" alt="palette-postcard 雪中角楼 WINTER MIRROR 测试结果" width="420">
+</p>
+
+**适合**
+
+- 把旅行照、建筑、自然风景、街景、人物或旅行物件做成收藏级水彩研究页
+- 需要同一系列保持纸张和排版秩序，同时让每张照片拥有独立水彩提炼与真实色卡
+
+**不适合**
+
+- 普通水彩滤镜、写实水彩复刻或通用配色信息图
+- 多图拼贴、像素级原图排版、后期代码合成或满版装饰海报
+
+**怎么触发**
+
+```
+用 palette-postcard 处理这些旅行照片
+把这张照片做成旅行色卡水彩研究页，保留顶部原照和三枚源图色卡
+Create a separate palette postcard for each travel photo
+```
+
+→ [SKILL.md](./palette-postcard/SKILL.md)
 
 </td></tr>
 </table>
