@@ -1,50 +1,48 @@
 ---
 name: safe-scout
-description: Use when the agent backend runs on a content-moderated model provider (China relays: Bailian/DashScope, others with safety inspection) and the task involves fetching arbitrary external text (web pages, GitHub READMEs, search results) — or when a session starts failing every request with 400 content-inspection errors. Triggers: DataInspectionFailed, content-policy 400 loops, 调研外部文本, 抓网页, 读 README, 会话一直报错.
+description: "Research continuity and recovery for backends known to have input-inspection failures, or sessions showing matching errors such as DataInspectionFailed. Ordinary research, web fetching, or README reading alone does not trigger this skill."
 ---
 
 # safe-scout · 调研任务保险协议
 
 > 用内容审查型模型后端（百炼等国产接力）做调研任务时的防污染+救援协议。方法来自真实会话报废事故的复盘。
 
-## 机制（三句话）
+## 启用条件与故障假设
 
-1. Claude Code 类 agent **每次请求重发完整对话历史**
-2. 审查型 provider 对输入做**概率性语义审查**——同一段内容这次过、下次可能不过
-3. 任意一段外部文本中招 → 该请求失败，且历史永久携带它 → **之后每个请求都失败，整个会话报废**
+仅当已知当前后端存在本文所述输入审查故障，或当前会话出现对应错误证据时启用。“调研”“抓网页”“读 README”本身不构成启用条件；条件不成立时沿用普通研究流程，不为确认后端而中断任务。
 
-理解这三条，下面所有动作才有意义。
+当请求重复携带触发输入审查的历史内容时，后续请求可能持续失败。这是需要结合当前错误信息检查的故障假设，不代表所有后端都会永久阻断会话；隔离和摘要也不保证请求成功，不得用于绕过平台内容政策。
 
 ---
 
-## 事前：隔离协议（调研任务默认动作）
+## 事前：隔离协议（仅在启用条件成立时）
 
 ### 1. 落盘优先
 
-外部输出（搜索结果/网页/README/issue）**一律重定向到临时文件**，不进主会话上下文：
+对支持文件输出的工具，外部输出（搜索结果/网页/README/issue）优先保存到获准写入的临时文件，再按需读取。工具不支持时，使用符合当前平台规则的可用读取方式，并控制返回内容范围：
 
 ```bash
 gh search repos "关键词" --json fullName,stargazersCount,description > /tmp/scout_1.json
 curl -s URL -o /tmp/page.html
 ```
 
-### 2. 安全字段提取
+### 2. 结构化字段提取
 
-从落盘文件里只提取**结构化字段**进上下文，绝不提取 description/正文全文：
+先从落盘文件提取与问题相关的结构化字段；它们只支持对应的元数据判断，不能替代功能证据：
 
 ```bash
 jq -r '.[] | [.fullName, .stargazersCount, .pushed_at, (.license.spdx_id // "?")] | @tsv' /tmp/scout_1.json
 ```
 
-能力判断用模型自有知识补，不确定标"待确认"。
+功能、限制和适用场景应读取相关来源后再下结论；模型知识只用于提出检索假设。仍无法核实时，明确保留该缺口并继续其他部分。
 
 ### 3. 子 agent 隔离
 
-必须读全文时（README/长文），**派子 agent 读**，只让它返回结构化结论；并要求它每步结论落盘保底。子 agent 中招阵亡 = 主会话无恙 + 部分结果在盘上。
+需要读取 README 或长文时，可用且符合平台规则的情况下，优先由隔离子 agent 读取必要内容，返回带来源的结构化结论，并将中间结果保存到获准写入的任务文件。子 agent 不可用时，使用允许的替代读取方式；不能将子 agent 视为主会话安全的保证。
 
 ### 4. 主会话摄取自检
 
-任何外部文本进主会话前问一句：**这来源可信干净吗？** 官方文档/自己写的可以读；UGC/任意第三方文本走 1-3。
+读取前在内部判断来源、所需内容范围与可用工具，不将自检变成向用户索要确认。来源可信度用于评估证据，不能保证内容审查通过；只读取完成当前判断所需的内容。
 
 ---
 
@@ -55,31 +53,30 @@ jq -r '.[] | [.fullName, .stargazersCount, .pushed_at, (.license.spdx_id // "?")
 | 百炼/DashScope | `400 InvalidParameter ... DataInspectionFailed` | 输入命中内容审查 |
 | 通用 | 400 + `content policy / safety / inappropriate content` 类措辞 | 同类机制 |
 
-**识别要点**：同一会话内连续多个不同请求报同类 400 = 会话已污染（不是偶发网络/参数错误）。
+**识别要点**：同一会话内连续多个不同请求报同类 400，视为疑似上下文相关故障；检查错误详情是否支持输入审查的判断，不仅凭状态码排除参数、认证或其他问题。
 
 ---
 
 ## 事后：救援决策树
 
-中招后按顺序执行，**第一步是停止重试**（重试无效，只会往历史里塞更多错误文本）：
+出现上述疑似故障后，先停止重复提交相同失败请求，再按平台能力恢复：
 
-1. **停重试**。把当前进度立即落盘（文件/记忆/任务清单）
-2. **试 `/compact`**：历史压成摘要 = 洗上下文。压缩后发一条探测请求
-3. 探测通过 → 继续干活；探测仍失败 → **弃会话**
-4. 弃会话不等于丢工作：新会话读落盘文件续上，损失 = 对话记忆，不是工作成果
-5. 复盘：找出污染文本是哪段（对照落盘文件），下次该来源走隔离协议
+1. 将当前进度、来源和未完成项保存到获准写入的任务文件；不默认写入长期用户记忆。
+2. 仅在平台支持且允许时尝试上下文恢复（例如 `/compact`），恢复后发一条符合平台规则的探测请求；不反复压缩、改写被拒内容以试探审查。
+3. 探测通过则继续工作；仍失败或无法恢复时，继续可执行的独立工作。
+4. 交付恢复检查点、未完成项及所需下一步；需要用户操作才能恢复时，明确说明。未经实际执行，不声称已创建或恢复新会话；未完成部分不标为完成。
 
 ---
 
 ## 红线
 
-- 不把 UGC/任意第三方全文读进主会话
+- 协议启用后控制外部内容的读取范围；隔离工具不可用时采用允许的替代读取方式
 - 中招后不连环重试
 - 子 agent 任务必须带落盘保底
 - 长任务中间结果随时落盘——没中招也是好习惯
 
 ## 质检（调研任务结束前）
 
-- [ ] 外部全文进过主会话吗？进过的来源干净吗？
+- [ ] 外部内容的读取范围是否符合任务需要与平台规则？
 - [ ] 中间结果在盘上有备份吗？
 - [ ] 给用户的结论里，事实与"待确认"分开标了吗？

@@ -1,6 +1,6 @@
 ---
 name: hv-analysis
-description: Use when the user wants quick but systematic research on a product / company / concept / person — a 30-60 minute framework with real-time sources, not a 10k-word deep report. Triggers: 研究一下, 调研一下, 竞品分析, 这个产品/公司/概念是怎么回事, 帮我了解, quick research, hv-analysis. Not for: simple definitions (just answer), full 10k-30k word deep reports with PDF (use KKKKhazix/hv-analysis original).
+description: "Use when the user wants quick but systematic research on a product / company / concept / person — a 30-60 minute framework with real-time sources, not a 10k-word deep report. Triggers: 研究一下, 调研一下, 竞品分析, 这个产品/公司/概念是怎么回事, 帮我了解, quick research, hv-analysis. Not for: simple definitions (just answer), full 10k-30k word deep reports with PDF (use KKKKhazix/hv-analysis original)."
 ---
 
 # 横纵分析法 · 轻量完整版
@@ -52,13 +52,13 @@ description: Use when the user wants quick but systematic research on a product 
 2. **时效硬规则**：关键事实优先采用近 12 个月来源；引用必标日期；超 12 个月的旧信息谨慎使用并标注"较早来源"
 3. 事实、推断、观点分开写；冲突信息并列呈现
 
-### 充分性自检（不过不进下一步）
+### 充分性自检与搜索结束条件
 
 - 纵：能讲出一个有因果的完整故事吗？有无明显信息断层？
 - 横：主要玩家漏了吗？每个对比对象的信息够吗？
 - 源：关键事实有可靠来源吗？有没有单源就下判断的？
 
-不够就补搜，不凑合。
+先判断缺口是否影响核心问题。影响核心结论的缺口应定向补搜；完成规定搜索并追查关键线索后，仍不可获得的信息标为“暂缺”或“无法核实”，说明它限制了哪些判断，然后完成其余分析与交付。不得为了通过检查编造事实或强行补齐因果故事。工具不可用时，尝试可用的等效检索方式；仍受阻则说明未完成的研究项，不把未检索的内容标为已核实。
 
 ---
 
@@ -113,17 +113,20 @@ description: Use when the user wants quick but systematic research on a product 
 
 ## 一句话结论
 ## 关键时间线（表格：时间 | 事件 | 意义）
+## 纵向分析：起源、转折与路径依赖
 ## 横向对比（表格：维度 | 对象 | 竞品1 | 竞品2）
 ## 交汇判断
 ## 仍待确认的问题
 ## 信息来源（URL + 访问日期，一手来源标 ★）
 ```
 
-总篇幅 2000-8000 字分级：简单对象靠下限，复杂对象靠上限。
+时间线辅助定位事件，不替代纵向分析正文。总篇幅以 2000-8000 字为参考，各部分篇幅随资料量调整，不为达到字数下限重复内容。
 
 ---
 
-## 质检自检（交付前必过）
+## 质检自检（交付前逐项检查）
+
+必须检查并如实处理每项；按上述搜索结束条件确认无法获得的信息，可以用“暂缺且已说明影响”记录检查结果，不能视作已核实。完成可执行的研究与交付，并明确仍受阻的部分。
 
 - [ ] 信息是实时搜的，不是凭记忆？关键事实标了来源和日期？
 - [ ] 纵轴是叙事故事，不是年表？
