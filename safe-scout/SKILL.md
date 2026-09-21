@@ -19,7 +19,7 @@ description: "Research continuity and recovery for backends known to have input-
 
 ### 1. 落盘优先
 
-对支持文件输出的工具，外部输出（搜索结果/网页/README/issue）优先保存到获准写入的临时文件，再按需读取。工具不支持时，使用符合当前平台规则的可用读取方式，并控制返回内容范围：
+对支持文件输出的工具，外部输出（搜索结果/网页/README/issue）优先保存到获准写入的临时文件（指当前环境已允许写入的位置，如 /tmp 或会话工作目录；无需为此专门征求用户同意），再按需读取。工具不支持时，使用符合当前平台规则的可用读取方式，并控制返回内容范围：
 
 ```bash
 gh search repos "关键词" --json fullName,stargazersCount,description > /tmp/scout_1.json
