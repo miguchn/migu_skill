@@ -241,6 +241,13 @@ On content-moderated model backends (Bailian et al.), every request resends the 
 
 - Direct, non-moderated backends (Anthropic official etc.) — no such pain
 
+**Trigger examples**
+
+```
+Activates automatically per its enabling conditions on consecutive DataInspectionFailed-class 400s
+Or say explicitly: use the safe-scout protocol for this research task
+```
+
 → [SKILL.md](./safe-scout/SKILL.md)
 
 </td></tr>
@@ -255,6 +262,8 @@ Maintained by the Chinese WeChat blog **别动生产库** (*"Don't Touch the Pro
 More AI × engineering content: search 「别动生产库」 on WeChat. If this helps, a ⭐ is appreciated.
 
 Inclusion criteria: ① actually used and proven ② first-principles reviewed, redundancy removed ③ single-file, zero dependencies.
+
+Image skills (minimal-paper-cover / photo-travel-badge / palette-postcard) process photos you upload — use them only on images you have the rights to, and mind portrait rights for photos containing identifiable people.
 
 ---
 

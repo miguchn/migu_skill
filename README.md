@@ -249,6 +249,13 @@ Create a separate palette postcard for each travel photo
 
 - 直连无审查后端（Anthropic 官方等）——没这个痛点
 
+**怎么触发**
+
+```
+出现 DataInspectionFailed 类连续 400 时，按启用条件自动生效
+也可显式说：用 safe-scout 协议做这次调研
+```
+
 → [SKILL.md](./safe-scout/SKILL.md)
 
 </td></tr>
@@ -263,6 +270,8 @@ Create a separate palette postcard for each travel photo
 更多 AI × 工程的实战内容，微信搜索「别动生产库」。对你有帮助的话，给个 ⭐ 就行。
 
 收录标准：① 真实用过验证有效 ② 第一原理审查、冗余已精简 ③ 单文件无外部依赖。
+
+图像类 skill（minimal-paper-cover / photo-travel-badge / palette-postcard）会处理你上传的照片，请仅在有权使用的图片上使用；含可识别人物的照片注意肖像权。
 
 ---
 
