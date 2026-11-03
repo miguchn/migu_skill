@@ -7,7 +7,7 @@
 #### 微信公众号「别动生产库」真实在用的 Agent Skill，审查精简后开源在这里
 
 [![License](https://img.shields.io/badge/License-MIT-3B82F6?style=for-the-badge)](./LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-5-10B981?style=for-the-badge)](#-skills)
+[![Skills](https://img.shields.io/badge/Skills-6-10B981?style=for-the-badge)](#-skills)
 [![AgentSkills](https://img.shields.io/badge/AgentSkills-Standard-8B5CF6?style=for-the-badge)](https://agentskills.io)
 
 ![Claude Code](https://img.shields.io/badge/Claude_Code-Skill-D97706?style=flat-square&logo=anthropic&logoColor=white)
@@ -23,13 +23,16 @@
 
 ## 📋 目录
 
+按首次发布倒序排列，最新在前；已有 skill 的修订不改变顺序。
+
 | 名字 | 一句话 |
 |---|---|
-| 🔭 [**hv-analysis（横纵分析法·轻量快速版）**](#hv-analysis) | 想搞懂一个产品/项目/概念，丢给它，30-60 分钟出带实时来源的框架性调研报告 |
-| 🛡️ [**safe-scout（调研保险协议）**](#safe-scout) | 国产模型后端做调研时，防内容审查污染：事前隔离、事中识别、事后救援，会话不报废 |
-| 🎨 [**minimal-paper-cover（极简纸感手绘封面）**](#minimal-paper-cover) | 把照片或主题提炼成小主体、大留白、鲜明丙烯色块的纸感封面插画 |
-| 🏅 [**photo-travel-badge（旅行纪念珐琅徽章）**](#photo-travel-badge) | 保留旅行照中的主体、必要环境与地标文字，重新设计成有真实金属厚度的珐琅纪念徽章 |
+| ✍️ [**natural-writing（自然写作）**](#natural-writing) | 中文稿去模板腔，保留事实、判断和作者声音；正式报告也能用 |
 | 🎨 [**palette-postcard（旅行色卡水彩研究页）**](#palette-postcard) | 每张旅行照独立生成照片、水彩观察稿、档案文字和三枚源图色卡组成的收藏级研究页 |
+| 🏅 [**photo-travel-badge（旅行纪念珐琅徽章）**](#photo-travel-badge) | 保留旅行照中的主体、必要环境与地标文字，重新设计成有真实金属厚度的珐琅纪念徽章 |
+| 🎨 [**minimal-paper-cover（极简纸感手绘封面）**](#minimal-paper-cover) | 把照片或主题提炼成小主体、大留白、鲜明丙烯色块的纸感封面插画 |
+| 🛡️ [**safe-scout（调研保险协议）**](#safe-scout) | 国产模型后端做调研时，防内容审查污染：事前隔离、事中识别、事后救援，降低会话中断风险 |
+| 🔭 [**hv-analysis（横纵分析法·轻量快速版）**](#hv-analysis) | 想搞懂一个产品/项目/概念，丢给它，30-60 分钟出带实时来源的框架性调研报告 |
 
 ---
 
@@ -44,11 +47,11 @@
 Agent 会自己 clone 到对应目录，不用你操心路径。也可以手动：
 
 ```bash
-ln -s $(pwd)/hv-analysis ~/.claude/skills/   # 软链，随仓库更新
+ln -s "$(pwd)/hv-analysis" ~/.claude/skills/   # 软链，随仓库更新
 # 或 cp -r hv-analysis ~/.claude/skills/
 ```
 
-Agent 不支持 Skill 也没关系：把 `SKILL.md` 全文当项目规则文件或直接贴进对话，效果一致。
+Agent 不支持 Skill 也没关系：把 `SKILL.md` 全文当项目规则文件或直接贴进对话使用；自动发现和工具能力取决于具体环境，效果不保证一致。
 
 ---
 
@@ -59,126 +62,41 @@ Agent 不支持 Skill 也没关系：把 `SKILL.md` 全文当项目规则文件�
 <table>
 <tr><td>
 
-<a id="hv-analysis"></a>
+<a id="natural-writing"></a>
 
-### 🔭 hv-analysis（横纵分析法·轻量快速版）
+### ✍️ natural-writing（自然写作）
 
-> *"纵向追时间深度，横向追同期广度，最终交汇出判断。"* —— 方法借鉴自 [数字生命卡兹克](https://github.com/KKKKhazix/khazix-skills) 开源的横纵分析法。原版产出 1-3 万字 + PDF 的重型深度报告；**本版是轻量完整版：30-60 分钟、结构化 Markdown、实时来源**——小但闭环完整。要重型报告请用原版。
+> 去模板腔，保留事实、判断和作者声音。
 
-想搞懂一个产品 / 项目 / 技术 / 概念到底是怎么回事，丢给它就行。纵轴从诞生讲到当下、追出路径依赖；横轴把同期竞品摆上同一组维度对比；两轴交叉，给出未来路径和预警信号。全程带**证据硬规则**：一手来源优先、来源标日期、事实/推断/观点三分离、查不到就写"暂未核实"——防幻觉是这套方法的命。
+把中文稿里绕、空、重复的表达改得自然清楚，保住作者已有的态度和情绪。文章可以轻松，报告可以正式；不靠添加亲历或虚构细节制造“人味”，也不承诺通过 AI 检测。
 
-**我们这版有什么不同**
+**能做什么**
 
-- **轻量但完整闭环**：实时搜索层（两路搜索清单 + arXiv 必查 + 一手来源优先 + 关键事实 12 个月时效硬规则）→ 双轴分析 → 交汇判断 → 结构化 Markdown 交付 → 5 项质检，30-60 分钟出活
-- **开源项目型对象走 gh 结构化元数据协议**（stars/活跃度/license/releases），比读 README 更抗噪音——这是我们 scout 调研实战攒下的
-- 路径依赖纵轴一次问透，综合阶段不重复问
-- 未来路径 1-3 条视情况，不凑数
-- 篇幅分级 2000-8000 字，简单对象不注水
+- **保真润色**：保护数字、术语、引用、主体、否定、因果和确定性，不把“可能”改成“大概率”
+- **13 类表达检查**：识别套话、黑话、翻译腔、空总结及机械节奏；按语义处理，不机械删词
+- **按范围改稿**：普通润色直接去冗余；结构重写、严格保句、只审不改分别处理
+- **保留作者声音**：参考样本的表达方式，不搬运样本里的经历和数据；交付前对照原稿检查信息漂移
 
 **适合**
 
-- 技术选型 / 开源项目调研 / 竞品分析 / 行业研究的快速框架
-- 写深度稿前的素材准备
+- 公众号、博客、帖子或报告去 AI 腔、去模板腔
+- 多轮修改后，希望恢复原有语气的中文稿件
 
 **不适合**
 
-- 查个名词解释——杀鸡用牛刀
-- 1-3 万字重型深度报告 + PDF——那是原版的活，直接用 [原版](https://github.com/KKKKhazix/khazix-skills)
+- 判断文本是否由 AI 生成、保证检测分下降
+- 替代事实核查、逐字翻译，或修改代码与日志本体
 
 **怎么触发**
 
 ```
-研究一下 MoneyPrinterTurbo 这个项目
-帮我做个竞品分析
-这个产品到底是怎么回事
-用横纵分析法调研一下
+帮这篇文章去 AI 味，保留我的判断和语气
+这份报告太模板了，改自然一些，保持正式
+用 natural-writing 润色，一句都别删
+先指出模板腔问题，不改写
 ```
 
-→ [SKILL.md](./hv-analysis/SKILL.md)
-
-</td></tr>
-</table>
-
-<table>
-<tr><td>
-
-<a id="minimal-paper-cover"></a>
-
-### 🎨 minimal-paper-cover（极简纸感手绘封面）
-
-> *“线条负责提示，色块负责成立。”*
-
-把照片或主题中最有辨识度的主体、动作和空间关系提炼出来，删掉写实细节，只用细而轻的手绘线条与 2-4 种醒目丙烯色块重新表达。主体控制在画面的 10%-20%，其余交给粗糙白纸和留白，做出安静、克制、童趣又有封面感的小幅插画。
-
-**效果展示**
-
-左侧为原图，右侧为使用该 skill 生成的效果；下图将自动轮播三组测试结果。
-
-<p align="center">
-  <img src="./assets/minimal-paper-cover/examples-carousel.gif" alt="minimal-paper-cover 三组生成效果自动轮播" width="420">
-</p>
-
-**适合**
-
-- 把旅行照、人物照、建筑或日常物件做成极简封面插图
-- 只有一个主题，希望生成纸感、手绘、强提炼的视觉
-
-**不适合**
-
-- 写实复刻、照片转线稿、复杂满版场景
-- 水彩、彩铅、蜡笔、厚重油画、3D 或光滑商业插画
-
-**怎么触发**
-
-```
-把这张照片画成极简纸感封面
-用“雨天等公交”做一张小主体、大留白的丙烯手绘插画
-Create a minimal paper-textured cover from this photo
-```
-
-→ [SKILL.md](./minimal-paper-cover/SKILL.md)
-
-</td></tr>
-</table>
-
-<table>
-<tr><td>
-
-<a id="photo-travel-badge"></a>
-
-### 🏅 photo-travel-badge（旅行纪念珐琅徽章）
-
-> *“提炼不是把主体从环境中孤立出来，而是保留让地点可被认出的关系。”*
-
-从旅行照片中找出最值得记住的视觉主体，同时保留支撑它成立的少量环境关系、代表性色彩和地标原有文字，再重新设计成金色金属边、微浮雕与珐琅填色的实体纪念徽章。输出采用 3:2 横版、小主体、大留白和深色粗麻布背景；用户需要时，还可以把地名、年份或短文字作为克制的底部收口。
-
-**效果展示**
-
-上方为生成的徽章，下方为原始旅行照。
-
-<p align="center">
-  <img src="./assets/photo-travel-badge/jiefangge-before-after.jpg" alt="photo-travel-badge 解放阁生成效果与原图对照" width="420">
-</p>
-
-**适合**
-
-- 把旅行照、地标建筑、城市装置或特色景物做成有收藏感的珐琅徽章
-- 希望保留主体与必要环境、原图地标文字，并按需加入底部纪念文字
-
-**不适合**
-
-- 扁平贴纸、2D 矢量 Logo、普通描边图标
-- 完整写实场景复刻、卡通化或满版构图
-
-**怎么触发**
-
-```
-把这张旅行照做成金属珐琅纪念徽章
-保留地标和必要环境，底部写 JI NAN
-Create a gold-metal enamel travel badge from this photo
-```
-
-→ [SKILL.md](./photo-travel-badge/SKILL.md)
+→ [SKILL.md](./natural-writing/SKILL.md)
 
 </td></tr>
 </table>
@@ -228,6 +146,92 @@ Create a separate palette postcard for each travel photo
 <table>
 <tr><td>
 
+<a id="photo-travel-badge"></a>
+
+### 🏅 photo-travel-badge（旅行纪念珐琅徽章）
+
+> *“提炼不是把主体从环境中孤立出来，而是保留让地点可被认出的关系。”*
+
+从旅行照片中找出最值得记住的视觉主体，同时保留支撑它成立的少量环境关系、代表性色彩和地标原有文字，再重新设计成金色金属边、微浮雕与珐琅填色的实体纪念徽章。输出采用 3:2 横版、小主体、大留白和深色粗麻布背景；用户需要时，还可以把地名、年份或短文字作为克制的底部收口。
+
+**效果展示**
+
+上方为生成的徽章，下方为原始旅行照。
+
+<p align="center">
+  <img src="./assets/photo-travel-badge/jiefangge-before-after.jpg" alt="photo-travel-badge 解放阁生成效果与原图对照" width="420">
+</p>
+
+**适合**
+
+- 把旅行照、地标建筑、城市装置或特色景物做成有收藏感的珐琅徽章
+- 希望保留主体与必要环境、原图地标文字，并按需加入底部纪念文字
+
+**不适合**
+
+- 扁平贴纸、2D 矢量 Logo、普通描边图标
+- 完整写实场景复刻、卡通化或满版构图
+
+**怎么触发**
+
+```
+把这张旅行照做成金属珐琅纪念徽章
+保留地标和必要环境，底部写 JI NAN
+Create a gold-metal enamel travel badge from this photo
+```
+
+→ [SKILL.md](./photo-travel-badge/SKILL.md)
+
+</td></tr>
+</table>
+
+<table>
+<tr><td>
+
+<a id="minimal-paper-cover"></a>
+
+### 🎨 minimal-paper-cover（极简纸感手绘封面）
+
+> *“线条负责提示，色块负责成立。”*
+
+把照片或主题中最有辨识度的主体、动作和空间关系提炼出来，删掉写实细节，只用细而轻的手绘线条与 2-4 种醒目丙烯色块重新表达。主体控制在画面的 10%-20%，其余交给粗糙白纸和留白，做出安静、克制、童趣又有封面感的小幅插画。
+
+**效果展示**
+
+左侧为原图，右侧为使用该 skill 生成的效果；下图将自动轮播三组测试结果。
+
+<p align="center">
+  <img src="./assets/minimal-paper-cover/examples-carousel.gif" alt="minimal-paper-cover 三组生成效果自动轮播" width="420">
+</p>
+
+**适合**
+
+- 把旅行照、人物照、建筑或日常物件做成极简封面插图
+- 只有一个主题，希望生成纸感、手绘、强提炼的视觉
+
+**不适合**
+
+- 写实复刻、照片转线稿、复杂满版场景
+- 水彩、彩铅、蜡笔、厚重油画、3D 或光滑商业插画
+
+**怎么触发**
+
+```
+把这张照片画成极简纸感封面
+用“雨天等公交”做一张小主体、大留白的丙烯手绘插画
+Create a minimal paper-textured cover from this photo
+```
+
+→ [SKILL.md](./minimal-paper-cover/SKILL.md)
+
+</td></tr>
+</table>
+
+<table>
+<tr><td>
+
+<a id="safe-scout"></a>
+
 ### 🛡️ safe-scout（调研保险协议）
 
 > *"不是单次失败，是整个会话报废——除非你提前买了保险。"*
@@ -236,9 +240,9 @@ Create a separate palette postcard for each travel photo
 
 **事前隔离**（默认动作）：外部输出先落盘、jq 只提安全字段、全文派子 agent 读、子 agent 死了主会话无恙
 
-**事中识别**：错误签名表（DataInspectionFailed 等）+ "连续同类 400 = 已污染" 判定
+**事中识别**：错误签名表（DataInspectionFailed 等）+ "连续同类审查错误需排查上下文污染" 判定
 
-**事后救援**：停重试 → 落盘进度 → `/compact` 洗上下文 → 探测 → 不行就弃会话续盘，损失归零
+**事后救援**：停重试 → 落盘进度 → `/compact` 洗上下文 → 探测 → 不行就弃会话续盘，尽量减少进度损失
 
 **适合**
 
@@ -257,6 +261,49 @@ Create a separate palette postcard for each travel photo
 ```
 
 → [SKILL.md](./safe-scout/SKILL.md)
+
+</td></tr>
+</table>
+
+<table>
+<tr><td>
+
+<a id="hv-analysis"></a>
+
+### 🔭 hv-analysis（横纵分析法·轻量快速版）
+
+> *"纵向追时间深度，横向追同期广度，最终交汇出判断。"* —— 方法借鉴自 [数字生命卡兹克](https://github.com/KKKKhazix/khazix-skills) 开源的横纵分析法。原版产出 1-3 万字 + PDF 的重型深度报告；**本版是轻量完整版：30-60 分钟、结构化 Markdown、实时来源**——小但闭环完整。要重型报告请用原版。
+
+想搞懂一个产品 / 项目 / 技术 / 概念到底是怎么回事，丢给它就行。纵轴从诞生讲到当下、追出路径依赖；横轴把同期竞品摆上同一组维度对比；两轴交叉，给出未来路径和预警信号。全程带**证据硬规则**：一手来源优先、来源标日期、事实/推断/观点三分离、查不到就写"暂未核实"——防幻觉是这套方法的命。
+
+**我们这版有什么不同**
+
+- **轻量但完整闭环**：实时搜索层（两路搜索清单 + arXiv 必查 + 一手来源优先 + 关键事实 12 个月时效硬规则）→ 双轴分析 → 交汇判断 → 结构化 Markdown 交付 → 5 项质检，30-60 分钟出活
+- **开源项目型对象走 gh 结构化元数据协议**（stars/活跃度/license/releases），比读 README 更抗噪音——这是我们 scout 调研实战攒下的
+- 路径依赖纵轴一次问透，综合阶段不重复问
+- 未来路径 1-3 条视情况，不凑数
+- 篇幅分级 2000-8000 字，简单对象不注水
+
+**适合**
+
+- 技术选型 / 开源项目调研 / 竞品分析 / 行业研究的快速框架
+- 写深度稿前的素材准备
+
+**不适合**
+
+- 查个名词解释——杀鸡用牛刀
+- 1-3 万字重型深度报告 + PDF——那是原版的活，直接用 [原版](https://github.com/KKKKhazix/khazix-skills)
+
+**怎么触发**
+
+```
+研究一下 MoneyPrinterTurbo 这个项目
+帮我做个竞品分析
+这个产品到底是怎么回事
+用横纵分析法调研一下
+```
+
+→ [SKILL.md](./hv-analysis/SKILL.md)
 
 </td></tr>
 </table>
