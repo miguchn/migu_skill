@@ -4,10 +4,10 @@
 
 # 🧰 migu_skill
 
-#### 微信公众号「别动生产库」真实在用的 Agent Skill，审查精简后开源在这里
+#### 独立开发者 MiguCHN（小黑）的开源 Agent Skills 合集
 
 [![License](https://img.shields.io/badge/License-MIT-3B82F6?style=for-the-badge)](./LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-6-10B981?style=for-the-badge)](#-skills)
+[![Skills](https://img.shields.io/badge/Skills-7-10B981?style=for-the-badge)](#-skills)
 [![AgentSkills](https://img.shields.io/badge/AgentSkills-Standard-8B5CF6?style=for-the-badge)](https://agentskills.io)
 
 ![Claude Code](https://img.shields.io/badge/Claude_Code-Skill-D97706?style=flat-square&logo=anthropic&logoColor=white)
@@ -15,9 +15,9 @@
 
 </div>
 
-不是提示词合集。每个 skill 都在真实协作里用过、验证过，再按第一原理审一遍，**精简掉冗余才入库**——宁缺毋滥。
+这里收录我在开发、写作、调研和创作中积累的 Agent Skills，持续审查、精简和改进。我也通过自己的微信公众号「**别动生产库**」分享 AI 工具与工程实践。
 
-遵循 [Agent Skills](https://agentskills.io) 开放标准，Claude Code、Codex 等支持该标准的 Agent 都能装。
+采用 [Agent Skills](https://agentskills.io) 开放标准的目录结构，可用于 Claude Code、Codex 等支持该标准的 Agent；具体能力取决于运行环境提供的工具与权限。
 
 ---
 
@@ -27,6 +27,7 @@
 
 | 名字 | 一句话 |
 |---|---|
+| 🏷️ [**chat-tidy（会话标题整理）**](#chat-tidy) | 根据会话内容整理清楚、可搜索的标题，按授权范围改名并逐条回读校验 |
 | ✍️ [**natural-writing（自然写作）**](#natural-writing) | 中文稿去模板腔，保留事实、判断和作者声音；正式报告也能用 |
 | 🎨 [**palette-postcard（旅行色卡水彩研究页）**](#palette-postcard) | 每张旅行照独立生成照片、水彩观察稿、档案文字和三枚源图色卡组成的收藏级研究页 |
 | 🏅 [**photo-travel-badge（旅行纪念珐琅徽章）**](#photo-travel-badge) | 保留旅行照中的主体、必要环境与地标文字，重新设计成有真实金属厚度的珐琅纪念徽章 |
@@ -44,10 +45,11 @@
 帮我安装这个 skill：https://github.com/miguchn/migu_skill/tree/main/hv-analysis
 ```
 
-Agent 会自己 clone 到对应目录，不用你操心路径。也可以手动：
+支持技能安装的 Agent 可按其安装流程处理；目标目录和权限以工具自身说明为准。手动安装示例（先 clone 本仓库并进入仓库根目录）：
 
 ```bash
-ln -s "$(pwd)/hv-analysis" ~/.claude/skills/   # 软链，随仓库更新
+mkdir -p ~/.claude/skills
+ln -s "$(pwd)/hv-analysis" ~/.claude/skills/   # Claude Code 示例，软链随仓库更新
 # 或 cp -r hv-analysis ~/.claude/skills/
 ```
 
@@ -58,6 +60,41 @@ Agent 不支持 Skill 也没关系：把 `SKILL.md` 全文当项目规则文件�
 ## ✨ Skills
 
 <a id="-skills"></a>
+
+<table>
+<tr><td>
+
+<a id="chat-tidy"></a>
+
+### 🏷️ chat-tidy（会话标题整理）
+
+> 根据内容起标题，让会话更好找。
+
+整理含糊、编号占位、误译、直接照搬提示词或暴露隐私的会话标题。先明确范围，再读取足够的会话内容，提炼主题和可搜索关键词；清楚的标题保留，无实质内容的会话不强行命名。
+
+默认交付可审阅的改名清单；用户已明确授权执行时，按授权范围继续。改名前检查完整 ID、当前标题和平台限制，使用平台支持的工具、API 或 CLI，改后逐条回读，报告成功、失败和未核实项。只保留必要记录，避免导出会话正文或在清单中重复敏感信息。
+
+**适合**
+
+- 为积累的会话标题做一次检查，先看建议再决定
+- 在已授权的范围内批量整理标题，保留改前记录以便恢复
+
+**使用条件**
+
+- 运行环境须能列出和读取目标会话；执行改名还须有平台支持的改名能力
+- 不修改会话正文，不归档或删除会话；单个标题改名无需整批审查流程
+
+**怎么触发**
+
+```
+整理一下会话标题，先给我审核清单
+用 chat-tidy 检查这个项目的会话标题
+Clean up my chat titles with a review list first
+```
+
+→ [SKILL.md](./chat-tidy/SKILL.md)
+
+</td></tr></table>
 
 <table>
 <tr><td>
@@ -234,24 +271,23 @@ Create a minimal paper-textured cover from this photo
 
 ### 🛡️ safe-scout（调研保险协议）
 
-> *"不是单次失败，是整个会话报废——除非你提前买了保险。"*
+> 识别持续失败，保存进度，按平台能力恢复任务。
 
-用百炼等国产模型当 agent 后端时，每次请求重发完整历史，而审查是概率性的：一段外部文本中招，之后每个请求都 400，会话直接报废。这个 skill 把我们从真实事故里攒下的协议做成闭环：
+当模型后端的输入审查反复拒绝携带同一段历史的请求时，会话可能持续失败。这个 skill 针对已知存在此类故障的后端，或已出现对应错误证据的会话，提供内容读取与任务恢复流程：
 
-**事前隔离**（默认动作）：外部输出先落盘、jq 只提安全字段、全文派子 agent 读、子 agent 死了主会话无恙
+**事前控制读取范围**：必要输出保存到获准位置，优先提取相关结构化字段；可用时由隔离子 agent 阅读长文，但不保证主会话免受影响
 
 **事中识别**：错误签名表（DataInspectionFailed 等）+ "连续同类审查错误需排查上下文污染" 判定
 
-**事后救援**：停重试 → 落盘进度 → `/compact` 洗上下文 → 探测 → 不行就弃会话续盘，尽量减少进度损失
+**事后恢复**：停止重复失败请求 → 保存进度 → 平台支持时恢复上下文并探测 → 仍失败时交付恢复检查点，尽量减少进度损失
 
 **适合**
 
-- 用国产模型/接力后端跑 Claude Code 类 agent 的人
-- 任何要抓网页/读 README/扫搜索结果的重度调研任务
+- 已知后端存在输入审查故障，或出现 `DataInspectionFailed` 等对应错误的调研任务
 
 **不适合**
 
-- 直连无审查后端（Anthropic 官方等）——没这个痛点
+- 没有对应故障证据的普通调研；抓网页或读 README 本身不构成启用条件
 
 **怎么触发**
 
@@ -312,11 +348,11 @@ Create a minimal paper-textured cover from this photo
 
 ## 🌟 关于
 
-本仓库由微信公众号「**别动生产库**」维护——一个聊 AI 工具、工程实践、保险科技真实工作场景的技术号。这里的 skill 都先在我们自己的工作流里跑通、审过、精简过，才搬出来。
+我是独立开发者 **MiguCHN（小黑）**。这个仓库分享我在日常开发与创作中积累的 Agent Skills，关注明确的任务边界、实用的流程和可检查的结果。
 
-更多 AI × 工程的实战内容，微信搜索「别动生产库」。对你有帮助的话，给个 ⭐ 就行。
+我也在自己的微信公众号「**别动生产库**」分享 AI 工具与工程实践。微信搜索即可找到；欢迎通过仓库 Issue 反馈使用中的问题。
 
-收录标准：① 真实用过验证有效 ② 第一原理审查、冗余已精简 ③ 单文件无外部依赖。
+收录原则：任务明确、指令精简、结果可检查。当前 skill 的核心指令均在单个 `SKILL.md` 中；实际执行可能需要联网、图像生成或会话管理等工具，不代表所有平台均已验证。
 
 图像类 skill（minimal-paper-cover / photo-travel-badge / palette-postcard）会处理你上传的照片，请仅在有权使用的图片上使用；含可识别人物的照片注意肖像权。
 
@@ -326,6 +362,6 @@ Create a minimal paper-textured cover from this photo
 
 [MIT License](./LICENSE) · 自由使用 / 修改 / 再分发
 
-Made by 别动生产库
+Made by MiguCHN（小黑）
 
 </div>

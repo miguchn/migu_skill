@@ -4,10 +4,10 @@
 
 # 🧰 migu_skill
 
-#### The Agent Skills actually used and open-sourced by the WeChat blog 别动生产库 ("Don't Touch the Production DB") — reviewed and streamlined.
+#### Open-source Agent Skills by independent developer MiguCHN（小黑）
 
 [![License](https://img.shields.io/badge/License-MIT-3B82F6?style=for-the-badge)](./LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-6-10B981?style=for-the-badge)](#-skills)
+[![Skills](https://img.shields.io/badge/Skills-7-10B981?style=for-the-badge)](#-skills)
 [![AgentSkills](https://img.shields.io/badge/AgentSkills-Standard-8B5CF6?style=for-the-badge)](https://agentskills.io)
 
 ![Claude Code](https://img.shields.io/badge/Claude_Code-Skill-D97706?style=flat-square&logo=anthropic&logoColor=white)
@@ -15,9 +15,9 @@
 
 </div>
 
-Not a prompt dump. Every skill here has been used and verified in real collaboration, then reviewed from first principles — **bloat streamlined away before it enters the repo**. Fewer, but sharper.
+A collection of Agent Skills from my development, writing, research, and creative workflows, reviewed and improved over time. I also share AI tooling and engineering practice through my own WeChat blog, **别动生产库** ("Don't Touch the Production DB").
 
-Follows the [Agent Skills](https://agentskills.io) open standard. Works with Claude Code, Codex, and any compatible agent.
+Uses the [Agent Skills](https://agentskills.io) directory format for compatible agents such as Claude Code and Codex. Available capabilities depend on the tools and permissions in the runtime.
 
 ---
 
@@ -27,6 +27,7 @@ Newest first by initial release. Updates to existing skills do not change their 
 
 | Name | One-liner |
 |---|---|
+| 🏷️ [**chat-tidy**](#chat-tidy) | Turn chat content into clear, searchable titles, rename within the authorized scope, and verify each change |
 | ✍️ [**natural-writing (Natural Writing)**](#natural-writing) | Polish Chinese drafts without losing facts, judgment, voice, or the intended level of formality |
 | 🎨 [**palette-postcard**](#palette-postcard) | Give each travel photo its own collectible study page combining the source photo, selective watercolor, archive text, and three source-derived swatches |
 | 🏅 [**photo-travel-badge**](#photo-travel-badge) | Preserve a travel photo's subject, supporting context, and landmark text in a physically rendered gold-metal enamel badge |
@@ -44,10 +45,11 @@ In Claude Code, Codex, or any Agent-Skills-compatible tool, just say:
 Install this skill for me: https://github.com/miguchn/migu_skill/tree/main/hv-analysis
 ```
 
-The agent clones it into the right place for you. Or manually:
+Agents with skill installation support can follow their own installation workflow; paths and permissions depend on the tool. Manual example (clone this repository and enter its root first):
 
 ```bash
-ln -s "$(pwd)/hv-analysis" ~/.claude/skills/   # symlink, stays in sync
+mkdir -p ~/.claude/skills
+ln -s "$(pwd)/hv-analysis" ~/.claude/skills/   # Claude Code example; symlink stays in sync
 # or: cp -r hv-analysis ~/.claude/skills/
 ```
 
@@ -58,6 +60,41 @@ No skill support? Paste the `SKILL.md` content as project rules or straight into
 ## ✨ Skills
 
 <a id="-skills"></a>
+
+<table>
+<tr><td>
+
+<a id="chat-tidy"></a>
+
+### 🏷️ chat-tidy
+
+> Name chats from their content, so they are easier to find.
+
+Reviews vague titles, numbered placeholders, mistranslations, copied prompts, and titles that expose private details. It scopes the task, reads enough conversation content, and proposes titles with a clear topic and useful search terms. Clear titles stay as they are; chats without substantive content are not force-named.
+
+By default, it delivers a reviewable rename list. When the user has already authorized execution, it continues within that scope. Before each rename, it checks the full ID, current title, and platform limits, then uses supported tools, APIs, or CLIs. It reads each title back and reports successes, failures, and unverified results. Records are kept to the minimum needed, without exporting chat bodies or repeating sensitive details in review lists.
+
+**Good for**
+
+- Reviewing an accumulated chat list before deciding what to rename
+- Batch-renaming within an authorized scope, with original titles recorded for recovery
+
+**Requirements and scope**
+
+- The runtime must support listing and reading target chats; execution also requires supported title-editing tools
+- Does not edit chat content, archive chats, or delete them; a single rename does not need the full batch workflow
+
+**Trigger examples**
+
+```
+整理一下会话标题，先给我审核清单
+Use chat-tidy to review this project's chat titles
+Clean up my chat titles with a review list first
+```
+
+→ [SKILL.md](./chat-tidy/SKILL.md)
+
+</td></tr></table>
 
 <table>
 <tr><td>
@@ -226,24 +263,23 @@ Create a tiny-subject acrylic illustration about waiting for a bus in the rain
 
 ### 🛡️ safe-scout (research insurance)
 
-> *"Not a single failed request — the whole session bricks. Unless you insured it beforehand."*
+> Recognize persistent failures, save progress, and recover with supported tools.
 
-On content-moderated model backends (Bailian et al.), every request resends the full history, and inspection is probabilistic: one poisoned external text means every request after fails with 400 — session bricked. This skill turns protocols earned from a real bricking incident into a closed loop:
+When input inspection repeatedly rejects requests carrying the same conversation history, a session may keep failing. This skill provides reading and recovery procedures for backends known to exhibit this failure, or sessions with matching error evidence:
 
-**Before (default)**: external output lands on disk first; jq extracts only safe fields; full-text reading goes to subagents; a dead subagent leaves the main session untouched
+**Before**: limit reading to relevant content, save necessary output to permitted locations, and extract structured fields first; isolated subagents may read long sources when available, without guaranteeing protection for the main chat
 
 **During**: error-signature table (DataInspectionFailed et al.) + "consecutive inspection errors warrant checking context contamination" rule
 
-**After**: stop retrying → save progress → `/compact` to launder context → probe → if still failing, abandon session and resume from disk; minimize lost progress
+**After**: stop repeating failed requests → save progress → use supported context recovery and probe → if recovery fails, deliver a checkpoint and remaining work
 
 **Good for**
 
-- Anyone running Claude Code-class agents on Chinese model relays
-- Any heavy research task that fetches pages / reads READMEs / scrapes search results
+- Research on backends with known input-inspection failures, or sessions showing matching errors such as `DataInspectionFailed`
 
 **Not for**
 
-- Direct, non-moderated backends (Anthropic official etc.) — no such pain
+- Ordinary research without matching failure evidence; fetching pages or reading READMEs alone does not trigger the skill
 
 **Trigger examples**
 
@@ -304,11 +340,11 @@ Run an hv-analysis on X
 
 ## 🌟 About
 
-Maintained by the Chinese WeChat blog **别动生产库** (*"Don't Touch the Production DB"*) — AI tooling, engineering practice, and insurance-tech in the wild. Skills earn their place here only after running in our own workflow, passing review, and getting streamlined.
+I am **MiguCHN（小黑）**, an independent developer. This repository shares Agent Skills from my everyday development and creative work, with clear task boundaries, practical workflows, and results that can be checked.
 
-More AI × engineering content: search 「别动生产库」 on WeChat. If this helps, a ⭐ is appreciated.
+I also write about AI tooling and engineering practice on my own WeChat blog, **别动生产库** ("Don't Touch the Production DB"). Search for the name on WeChat, or use repository Issues to report problems with these skills.
 
-Inclusion criteria: ① actually used and proven ② first-principles reviewed, redundancy removed ③ single-file, zero dependencies.
+Inclusion principles: focused tasks, concise instructions, and checkable results. Each skill currently keeps its core instructions in one `SKILL.md`; execution may require tools such as web access, image generation, or chat management. This does not imply validation on every platform.
 
 Image skills (minimal-paper-cover / photo-travel-badge / palette-postcard) process photos you upload — use them only on images you have the rights to, and mind portrait rights for photos containing identifiable people.
 
@@ -318,6 +354,6 @@ Image skills (minimal-paper-cover / photo-travel-badge / palette-postcard) proce
 
 [MIT License](./LICENSE) · use / modify / redistribute freely
 
-Made by 别动生产库
+Made by MiguCHN（小黑）
 
 </div>
